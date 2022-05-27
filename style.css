@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
@@ -13,4 +14,120 @@
 
 body {
   background-color: #d9d9d9;
+}
+
+#wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 40px;
+}
+
+#top-section {
+  height: 50px;
+  width: 100%;
+  background-color: var(--main-white);
+  margin-top: 40px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
+#middle-section {
+  height: 250px;
+  width: 100%;
+  background-color: var(--main-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#bottom-section {
+  height: 100px;
+  width: 100%;
+  background-color: var(--main-white);
+  margin-bottom: 40px;
+}
+
+#middle-top, #middle-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.boxes {
+  width: 200px;
+  height: 65px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: var(--main-gray);
+}
+
+.boxes:last-child {
+    border-radius: 10px;
+}
+
+
+#calculate-label {
+    background-color: var(--main-white);
+    display: grid;
+    place-items: center;
+}
+
+#input-subtotal {
+    height: 100%;
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+#select-tax {
+    height: 100%;
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+#select-item {
+    height: 100%;
+    width: 100%;
+}
+
+
+#show-total-1 {
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: rgba(74, 173, 82, 0.5);
+}
+
+#btn-calculate-total, #btn-show-total {
+    height: 100%;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    background-color: var(--dcam-blue);
+    border: none;
+    border-radius: 10px;
+    color: var(--main-white)
+}
+
+#btn-calculate-total:hover, #btn-show-total:hover {
+    background-color: rgba(33, 109, 171, 0.8);
+    cursor: pointer;
+}
+
+
+#show-subtotal, #show-tax, #show-total-2 {
+    display: grid;
+    place-items: center;
+    font-size: 1.4rem;
+    text-align: center;
+    background-color: rgba(74, 173, 82, 0.5);
 }

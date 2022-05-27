@@ -1,1 +1,86 @@
-console.log("hello world")
+// import { books } from "./books.js";
+
+
+const todaysDate = document.querySelector("#todays-date");
+
+const inputSubtotal = document.querySelector("#input-subtotal");
+const selectTax = document.querySelector("#select-tax");
+const showTotal1 = document.querySelector("#show-total-1");
+const btnCalcTotal = document.querySelector("#btn-calculate-total");
+
+const selectedItem = document.querySelector("#select-item");
+const showSubtotal = document.querySelector("#show-subtotal");
+const showTax = document.querySelector("#show-tax");
+const showTotal2 = document.querySelector("#show-total-2")
+const btnShowTotal = document.querySelector("#btn-show-total");
+
+
+// FUNCTIONS
+function showDate() {
+    const date = new Date();
+    const dateFormatted = date.toLocaleString("en-US", {
+        weekday: "long",
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
+
+    todaysDate.innerText = dateFormatted;
+}
+showDate()
+
+
+
+function getTotalPrice() {
+    const subtotal = +inputSubtotal.value;
+    const tax = +selectTax.value;
+    const total = subtotal * tax;
+    showTotal1.innerText = `$${total.toFixed(2)}`;
+}
+
+function showTotalPrice() {
+    let item = selectedItem.value;
+
+    // const showSubtotal = document.querySelector("#show-subtotal");
+    // const showTax = document.querySelector("#show-tax");
+    // const showTotal2 = document.querySelector("#show-total-2")
+    // const btnShowTotal = document.querySelector("#btn-show-total");
+
+
+    function showItemInfo(subtotal, tax) {
+        showSubtotal.innerText = `$${subtotal}`;
+        showTax.innerText = `$${tax}`;
+        const total = subtotal * tax;
+        showTotal2.innerText = `$${total.toFixed(2)}`;
+    }
+
+
+    switch (item) {
+        case "book-abc":
+            showItemInfo(14.95, 1.05)
+            break;
+        case "book-rcm-piano-1-tech":
+            showItemInfo(11.95, 1.05)
+            break;
+        case "book-rcm-piano-1-rep":
+            showItemInfo(18.95, 1.05)
+            break;
+        case "book-rcm-piano-1-etu":
+            showItemInfo(13.95, 1.05)
+            break;
+        case "book-rcm-piano-1-sight":
+            showItemInfo(17.95, 1.05)
+            break;
+        case "book-rcm-1-theory":
+            showItemInfo(17.95, 1.05)
+            break;
+        default:
+            console.log("default")
+            break;
+    }
+}
+
+
+// EVENT LISTENERS
+btnCalcTotal.addEventListener("click", getTotalPrice)
+btnShowTotal.addEventListener("click", showTotalPrice)
