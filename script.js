@@ -14,22 +14,25 @@ const showTax = document.querySelector("#show-tax");
 const showTotal2 = document.querySelector("#show-total-2")
 const btnShowTotal = document.querySelector("#btn-show-total");
 
+const btnShowBooks = document.querySelector("#btn-inventory-books");
+const btnShowNotebooks = document.querySelector("#btn-inventory-notebooks");
+const modal = document.querySelector("#modal");
+const modalOverlay = document.querySelector("#modal-overlay")
 
 // FUNCTIONS
-function showDate() {
-    const date = new Date();
-    const dateFormatted = date.toLocaleString("en-US", {
-        weekday: "long",
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-    });
+// function showDate() {
+//     const date = new Date();
+//     const dateFormatted = date.toLocaleString("en-US", {
+//         weekday: "long",
+//         month: "short",
+//         day: "numeric",
+//         year: "numeric"
+//     });
 
-    todaysDate.innerText = dateFormatted;
-}
-showDate()
+//     todaysDate.innerText = dateFormatted;
+// }
 
-
+// showDate()
 
 function getTotalPrice() {
     const subtotal = +inputSubtotal.value;
@@ -40,11 +43,6 @@ function getTotalPrice() {
 
 function showTotalPrice() {
     let item = selectedItem.value;
-
-    // const showSubtotal = document.querySelector("#show-subtotal");
-    // const showTax = document.querySelector("#show-tax");
-    // const showTotal2 = document.querySelector("#show-total-2")
-    // const btnShowTotal = document.querySelector("#btn-show-total");
 
 
     function showItemInfo(subtotal, tax) {
@@ -80,7 +78,53 @@ function showTotalPrice() {
     }
 }
 
+function showModal() {
+    modalOverlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    console.log("clicked")
+}
+
+function hideModal() {
+    modalOverlay.classList.add("hidden");
+    modal.classList.add("hidden");
+}
+
+
+
 
 // EVENT LISTENERS
-btnCalcTotal.addEventListener("click", getTotalPrice)
-btnShowTotal.addEventListener("click", showTotalPrice)
+btnCalcTotal.addEventListener("click", getTotalPrice);
+btnShowTotal.addEventListener("click", showTotalPrice);
+btnShowBooks.addEventListener("click", showModal);
+modalOverlay.addEventListener("click", hideModal);
+btnShowNotebooks.addEventListener("click", showBooks)
+
+
+
+
+//Just experimenting for now
+const abc1 = {
+    title: "ABC of Piano Playing (Book 1)",
+    price: 14.95,
+    quantity: 3
+}
+
+const abc2 = {
+    title: "ABC of Piano Playing (Book 2)",
+    price: 14.95,
+    quantity: 3
+}
+
+const abc3 = {
+    title: "ABC of Piano Playing (Book 3)",
+    price: 14.95,
+    quantity: 3
+}
+
+
+const booksArray = [abc1, abc2, abc3];
+
+
+function showBooks() {
+    const allbooks = booksArray.forEach(book => console.log(book.title))
+}
