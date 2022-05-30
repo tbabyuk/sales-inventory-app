@@ -1,25 +1,65 @@
-// import { books } from "./books.js";
+import { booksArray } from './inventory.js';
 
+//SELECT DOM ELEMENTS
 
-const todaysDate = document.querySelector("#todays-date");
+//Input Fields
+const inputSubtotal = document.querySelector('#input-subtotal');
+const selectTax = document.querySelector('#select-tax');
+const selectItem = document.querySelector('#select-item');
 
-const inputSubtotal = document.querySelector("#input-subtotal");
-const selectTax = document.querySelector("#select-tax");
-const showTotal1 = document.querySelector("#show-total-1");
-const btnCalcTotal = document.querySelector("#btn-calculate-total");
+//Output Fields
+const currentDate = document.querySelector('#current-date');
+const showSubtotal = document.querySelector('#show-subtotal');
+const showTax = document.querySelector('#show-tax');
+const showTotal1 = document.querySelector('#show-total-1');
+const showTotal2 = document.querySelector('#show-total-2');
+const showInventory = document.querySelector('#show-remaining-inventory');
+const modal = document.querySelector('#modal');
 
-const selectedItem = document.querySelector("#select-item");
-const showSubtotal = document.querySelector("#show-subtotal");
-const showTax = document.querySelector("#show-tax");
-const showTotal2 = document.querySelector("#show-total-2")
-const btnShowTotal = document.querySelector("#btn-show-total");
+//Buttons
+const btnCalcTotal = document.querySelector('#btn-calc-total');
+const btnShowTotal = document.querySelector('#btn-show-total');
+const btnShowBooks = document.querySelector('#btn-inventory-books');
+const btnShowNotebooks = document.querySelector('#btn-inventory-notebooks');
+const btnShowOther = document.querySelector('#btn-inventory-other');
+const btnSubtractQty = document.querySelector('.btn-subtract-qty');
 
-const btnShowBooks = document.querySelector("#btn-inventory-books");
-const btnShowNotebooks = document.querySelector("#btn-inventory-notebooks");
-const modal = document.querySelector("#modal");
-const modalOverlay = document.querySelector("#modal-overlay")
+//Other Elements
+const modalOverlay = document.querySelector('#modal-overlay');
 
-// FUNCTIONS
+//===================================================================================//
+
+// EVENT LISTENERS
+
+//Buttons
+btnCalcTotal.addEventListener('click', calcTotal);
+btnShowTotal.addEventListener('click', showItemInfo);
+btnShowBooks.addEventListener('click', showModal);
+btnShowNotebooks.addEventListener('click', () =>
+  alert('No items here yet! Sowwy!')
+);
+btnShowOther.addEventListener('click', () =>
+  alert('No items here yet! Sowwy!')
+);
+document.addEventListener('click', (e) => {
+  if (e.target.className === 'btn-subtract-qty') {
+    const target = e.target;
+    const num = target.parentElement.firstChild;
+    console.log(num);
+  }
+});
+
+//Other
+inputSubtotal.addEventListener('click', clearSubtotal);
+modalOverlay.addEventListener('click', hideModal);
+selectItem.addEventListener('click', clearItemInfoFields);
+
+//===================================================================================//
+
+//FUNCTIONS
+
+//Show Date (temporarily commented out)
+
 // function showDate() {
 //     const date = new Date();
 //     const dateFormatted = date.toLocaleString("en-US", {
@@ -34,97 +74,97 @@ const modalOverlay = document.querySelector("#modal-overlay")
 
 // showDate()
 
-function getTotalPrice() {
-    const subtotal = +inputSubtotal.value;
-    const tax = +selectTax.value;
-    const total = subtotal * tax;
-    showTotal1.innerText = `$${total.toFixed(2)}`;
+//Show books from dropdown menu
+let options = '';
+
+booksArray.forEach((book) => {
+  options += `<option>${book.title}</option>`;
+});
+selectItem.innerHTML = options;
+
+//Calculate total cost (subtotal + tax)
+function calcTotal() {
+  const subtotal = +inputSubtotal.value;
+  const tax = +selectTax.value;
+  const total = subtotal * tax;
+  showTotal1.innerText = `$${total.toFixed(2)}`;
 }
 
-function showTotalPrice() {
-    let item = selectedItem.value;
-
-
-    function showItemInfo(subtotal, tax) {
-        showSubtotal.innerText = `$${subtotal}`;
-        showTax.innerText = `$${tax}`;
-        const total = subtotal * tax;
-        showTotal2.innerText = `$${total.toFixed(2)}`;
-    }
-
-
-    switch (item) {
-        case "book-abc":
-            showItemInfo(14.95, 1.05)
-            break;
-        case "book-rcm-piano-1-tech":
-            showItemInfo(11.95, 1.05)
-            break;
-        case "book-rcm-piano-1-rep":
-            showItemInfo(18.95, 1.05)
-            break;
-        case "book-rcm-piano-1-etu":
-            showItemInfo(13.95, 1.05)
-            break;
-        case "book-rcm-piano-1-sight":
-            showItemInfo(17.95, 1.05)
-            break;
-        case "book-rcm-1-theory":
-            showItemInfo(17.95, 1.05)
-            break;
-        default:
-            console.log("default")
-            break;
-    }
+//Clear subtotal and total fields
+function clearSubtotal() {
+  inputSubtotal.value = showTotal1.innerText = '';
 }
 
+//Show item subtotal, tax, total, and remaining stock
+function showItemInfo() {
+  let item = selectItem.value;
+
+  const bookSelected = booksArray.find((book) => book.title === item);
+  // console.log(bookSelected);
+
+  showSubtotal.innerHTML = `$${bookSelected.price}`;
+  showTax.innerHTML = `${bookSelected.tax * 100}%`;
+  const totalCost = bookSelected.price * bookSelected.tax + bookSelected.price;
+  showTotal2.innerHTML = `$${totalCost.toFixed(2)}`;
+  showInventory.innerHTML = `${bookSelected.quantity}`;
+}
+
+//Clear item info fields
+function clearItemInfoFields() {
+  showSubtotal.innerHTML =
+    showTax.innerHTML =
+    showTotal2.innerHTML =
+    showInventory.innerHTML =
+      '';
+}
+
+//Show pop-up modal with book inventory table
 function showModal() {
-    modalOverlay.classList.remove("hidden");
-    modal.classList.remove("hidden");
-    console.log("clicked")
+  modalOverlay.classList.remove('hidden');
+  modal.classList.remove('hidden');
+  showBookInventory();
 }
 
+//Hide pop-up modal with book inventory table
 function hideModal() {
-    modalOverlay.classList.add("hidden");
-    modal.classList.add("hidden");
+  modalOverlay.classList.add('hidden');
+  modal.classList.add('hidden');
 }
 
+//Show Inventory Table (modal)
+function showBookInventory() {
+  modal.innerHTML = '';
 
+  let html = `
+  <table id="inventory-table">
+  <thead>
+  <tr>
+  <th>Item #</th>
+  <th>Book Title</th>
+  <th>Qty in Stock</th>
+  <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>
+  `;
 
+  booksArray.forEach((book, index) => {
+    html += `
+    <tr>
+    <td>${index + 1}</td>
+    <td>${book.title}</td>
+    <td class="qty-cell">${
+      book.quantity
+    }<button class="btn-subtract-qty">subtract</button></td>
+    <td>$${book.price}</td>
+    <tr
+    `;
+  });
 
-// EVENT LISTENERS
-btnCalcTotal.addEventListener("click", getTotalPrice);
-btnShowTotal.addEventListener("click", showTotalPrice);
-btnShowBooks.addEventListener("click", showModal);
-modalOverlay.addEventListener("click", hideModal);
-btnShowNotebooks.addEventListener("click", showBooks)
+  html += `
+    </tbody>
+    </table>
+    `;
 
-
-
-
-//Just experimenting for now
-const abc1 = {
-    title: "ABC of Piano Playing (Book 1)",
-    price: 14.95,
-    quantity: 3
-}
-
-const abc2 = {
-    title: "ABC of Piano Playing (Book 2)",
-    price: 14.95,
-    quantity: 3
-}
-
-const abc3 = {
-    title: "ABC of Piano Playing (Book 3)",
-    price: 14.95,
-    quantity: 3
-}
-
-
-const booksArray = [abc1, abc2, abc3];
-
-
-function showBooks() {
-    const allbooks = booksArray.forEach(book => console.log(book.title))
+  modal.insertAdjacentHTML('afterbegin', html);
 }

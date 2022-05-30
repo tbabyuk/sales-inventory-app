@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -16,6 +18,7 @@
 
 body {
   background-color: var(--main-gray);
+  font-family: 'Lato', sans-serif;
 }
 
 #wrapper {
@@ -23,7 +26,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 20px 80px;
   position: relative;
 }
 
@@ -42,7 +45,7 @@ body {
 }
 
 #middle-section {
-  height: 250px;
+  height: 300px;
   width: 100%;
   background-color: var(--main-white);
   display: flex;
@@ -63,13 +66,44 @@ body {
 }
 
 #middle-top,
-#middle-bottom {
+#middle-bottom,
+#middle-bottom-bottom {
   display: flex;
   justify-content: space-between;
 }
 
-.boxes {
+
+#middle-bottom-bottom .boxes {
+  height: 30px;
+  background-color: var(--main-white);
+  text-align: center;
+}
+
+#middle-bottom-bottom {
+  margin-top: 0;
+}
+
+#middle-top .boxes {
+  width: 150px;
+}
+
+#middle-top .boxes:first-child, #middle-top .boxes:last-child {
   width: 200px;
+}
+
+#middle-bottom .boxes, 
+#middle-bottom-bottom .boxes {
+  width: 100px;
+}
+
+#middle-bottom .boxes:first-child, #middle-bottom .boxes:last-child,
+#middle-bottom-bottom .boxes:first-child, #middle-bottom-bottom .boxes:last-child {
+  width: 200px;
+}
+
+
+.boxes {
+  width: 100px;
   height: 65px;
   margin-left: 20px;
   margin-right: 20px;
@@ -77,7 +111,9 @@ body {
   /* border-radius: 10px; */
 }
 
+
 #bottom-section .boxes {
+  width: 200px;
   border-radius: 10px;
 }
 
@@ -103,29 +139,28 @@ body {
   box-shadow: 5px 5px 5px var(--medium-gray);
 }
 
-#calculate-label {
+#calculate-label, #inventory-label {
   background-color: var(--main-white);
   display: grid;
   place-items: center;
+  font-size: 1.3rem;
 }
 
-#input-subtotal {
+#input-subtotal, #select-tax {
   height: 100%;
   width: 100%;
-  font-size: 1.4rem;
-  text-align: center;
-}
-
-#select-tax {
-  height: 100%;
-  width: 100%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 #select-item {
   height: 100%;
   width: 100%;
+  padding: 0 8px;
+}
+
+#select-item:hover {
+  cursor: pointer;
 }
 
 .buttons {
@@ -147,7 +182,7 @@ body {
 .display-box {
   display: grid;
   place-items: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   text-align: center;
   background-color: var(--main-gray);
 }
@@ -213,4 +248,15 @@ td {
 
 .hidden {
   display: none;
+}
+
+.subtract-inventory {
+  cursor: pointer;
+}
+
+
+
+.qty-cell {
+  display: flex;
+  justify-content: space-evenly;
 }

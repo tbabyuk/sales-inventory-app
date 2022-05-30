@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script type="module" defer src="inventory.js"></script>
     <script type="module" defer src="script.js"></script>
     <title>DCAM Sales & Inventory</title>
 </head>
@@ -14,7 +15,7 @@
     <div id="wrapper">
         <div id="top-section">
             <p id="welcome-message">Welcome, Heather!</p>
-            <p id="todays-date">Date goes here</p>
+            <p id="current-date">Date goes here</p>
         </div>
         <div id="middle-section">
             <div id="middle-top">
@@ -22,44 +23,47 @@
                 <div class="boxes"><input type="text" id="input-subtotal"></input></div>
                 <div class="boxes">
                     <select id="select-tax">
-                        <option selected hidden disabled>Select Tax</option>
                         <option value="1.05">GST (5%)</option>
                         <option value="1.13">HST (13%)</option>
                     </select>
                 </div>
                 <div class="boxes display-box" id="show-total-1"></div>
-                <div class="boxes"><button id="btn-calculate-total" class="buttons">Calculate Total</button></div>
+                <div class="boxes"><button id="btn-calc-total" class="buttons">Calculate Total</button></div>
             </div>
+
             <div id="middle-bottom">
                 <div class="boxes">
                     <select id="select-item">
-                        <option selected hidden disabled>Select Item</option>
-                        <option value="book-abc">ABC Book (1, 2, or 3)</option>
-                        <option value="book-rcm-piano-1-tech">RCM Piano - Lvl 1 Technical</option>
-                        <option value="book-rcm-piano-1-rep">RCM Piano - Lvl 1 Repertoire</option>
-                        <option value="book-rcm-piano-1-etu">RCM Piano - Lvl 1 Etudes</option>
-                        <option value="book-rcm-piano-1-sight">RCM Piano - Lvl 1 SR & Ear Tests</option>
-                        <option value="book-rcm-1-theory">RCM - Lvl 1 Theory</option>
                     </select>
                 </div>
                 <div class="boxes display-box" id="show-subtotal"></div>
                 <div class="boxes display-box" id="show-tax"></div>
                 <div class="boxes display-box" id="show-total-2"></div>
-                <div class="boxes"><button id="btn-show-total" class="buttons">Show Total</button></div>
+                <div class="boxes display-box" id="show-remaining-inventory"></div>
+                <div class="boxes"><button id="btn-show-total" class="buttons">Show Info</button></div>
+            </div>
+            <div id="middle-bottom-bottom">
+                <div class="boxes"></div>
+                <div class="boxes">Subtotal</div>
+                <div class="boxes">Tax</div>
+                <div class="boxes">Total</div>
+                <div class="boxes">Left in Stock</div>
+                <div class="boxes"></div>
             </div>
         </div>
         <div id="bottom-section">
-            <div class="boxes" id="calculate-label">Current Inventory:</div>
+            <div class="boxes" id="inventory-label">Current Inventory:</div>
             <div class="boxes"><button class="buttons" id="btn-inventory-books">BOOKS</button></div>
             <div class="boxes"><button class="buttons" id="btn-inventory-notebooks">NOTEBOOKS</button></div>
-            <div class="boxes"><button class="buttons" id="btn-show-total">OTHER</button></div>
+            <div class="boxes"><button class="buttons" id="btn-inventory-other">OTHER</button></div>
         </div>
+        
         <div id="modal-overlay" class="hidden">
             <div id="close-modal">&times;</div>
         </div>
         <div id="modal" class="hidden">
-            <table id="inventory-table">
-                <thead>
+            <!-- <table id="inventory-table"> -->
+                <!-- <thead>
                     <tr>
                         <th>Item #</th>
                         <th>Book Name</th>
@@ -328,8 +332,8 @@
                         <td>3</td>
                     </tr>
 
-                </tbody>
-            </table>
+                </tbody> -->
+            <!-- </table> -->
         </div>
     </div>
     <!--/wrapper-->
