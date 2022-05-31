@@ -61,18 +61,18 @@ selectItem.addEventListener('click', clearItemInfoFields);
 //Show Date (temporarily commented out)
 
 function showDate() {
-    const date = new Date();
-    const dateFormatted = date.toLocaleString("en-US", {
-        weekday: "long",
-        month: "short",
-        day: "numeric",
-        year: "numeric"
-    });
+  const date = new Date();
+  const dateFormatted = date.toLocaleString('en-US', {
+    weekday: 'long',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
-    todaysDate.innerText = dateFormatted;
+  currentDate.innerText = dateFormatted;
 }
 
-showDate()
+showDate();
 
 //Show books from dropdown menu
 let options = '';
