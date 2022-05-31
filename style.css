@@ -31,7 +31,7 @@ body {
 }
 
 #top-section {
-  height: 50px;
+  height: 70px;
   width: 100%;
   background-color: var(--main-white);
   margin-top: 40px;
@@ -43,6 +43,15 @@ body {
   font-size: 1.2rem;
   border-radius: 10px;
 }
+
+#logo {
+  height: 50px;
+  width: 190px;
+  background-image: url("./dcam-logo.png");
+  background-size: cover;
+  background-position: center;
+}
+
 
 #middle-section {
   height: 300px;
