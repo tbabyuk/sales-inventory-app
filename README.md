@@ -1,5 +1,7 @@
 # Sales & Inventory App
 
+See it live: [Sales & Inventory App](https://tranquil-quokka-7b82d5.netlify.app/)
+
 ## Description
 A simple desktop-only web app designed for a small music school business. It is meant to help the receptionist/sales person at the music school be able to do the following things:
 * quickly calculate total costs (subtotal + tax) for the different items the music school sells
@@ -17,6 +19,7 @@ The current version of this project was done with:
 * CSS
 * JavaScript (classes, forEach method)
 * Local Storage (in progress)
+
 If the app proves useful and we have ideas for more features, I might re-design it in React with components.
 
 ## State of Completion
@@ -34,7 +37,7 @@ This is a great opportunity to refresh my knowledge of Local Browser Storage and
 
 
 ## Summary
-This was a fun little project to make and what I especially liked about it as that it solved a real-world problem. I would like to continue to improve it as time goes by and based on feedback from the receptionist/sales person who uses it.
+This was a fun little project to make and what I especially liked about it is that it solved a real-world problem. I would like to continue to improve it as time goes by and based on feedback from the receptionist/sales person who uses it.
 
 
 
