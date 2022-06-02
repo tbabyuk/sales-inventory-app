@@ -264,6 +264,18 @@ td {
 }
 
 
+.btn-subtract-qty:hover {
+  cursor: pointer;
+}
+
+.row-red {
+  background-color: #f2d1d1;
+}
+
+.red {
+  background-color: red;
+}
+
 
 .qty-cell {
   display: flex;

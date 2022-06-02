@@ -22,10 +22,12 @@ const btnShowTotal = document.querySelector('#btn-show-total');
 const btnShowBooks = document.querySelector('#btn-inventory-books');
 const btnShowNotebooks = document.querySelector('#btn-inventory-notebooks');
 const btnShowOther = document.querySelector('#btn-inventory-other');
-const btnSubtractQty = document.querySelector('.btn-subtract-qty');
+
+
 
 //Other Elements
 const modalOverlay = document.querySelector('#modal-overlay');
+const booksRemaining = document.querySelector("#qty-cell");
 
 //===================================================================================//
 
@@ -41,18 +43,18 @@ btnShowNotebooks.addEventListener('click', () =>
 btnShowOther.addEventListener('click', () =>
   alert('No items here yet! Sowwy!')
 );
-document.addEventListener('click', (e) => {
-  if (e.target.className === 'btn-subtract-qty') {
-    const target = e.target;
-    const num = target.parentElement.firstChild;
-    console.log(num);
-  }
-});
 
-//Other
+document.addEventListener('click', (e) => {
+  if(e.target.className === 'btn-subtract-qty') {
+  updateStorage(e)
+  }
+}
+);
+
 inputSubtotal.addEventListener('click', clearSubtotal);
 modalOverlay.addEventListener('click', hideModal);
 selectItem.addEventListener('click', clearItemInfoFields);
+
 
 //===================================================================================//
 
@@ -74,12 +76,15 @@ function showDate() {
 
 showDate();
 
+
+//MIDDLE SECTION
 //Show books from dropdown menu
 let options = '';
 
 booksArray.forEach((book) => {
   options += `<option>${book.title}</option>`;
 });
+
 selectItem.innerHTML = options;
 
 //Calculate total cost (subtotal + tax)
@@ -118,6 +123,16 @@ function clearItemInfoFields() {
       '';
 }
 
+
+//LOWER SECTION - INVENTORY
+
+//Add book key-value pairs to storage only if one doesn't already exist
+booksArray.forEach(book => {
+  if(!localStorage.getItem(book.title)) {
+    localStorage.setItem(book.title, book.quantity);
+}})
+
+
 //Show pop-up modal with book inventory table
 function showModal() {
   modalOverlay.classList.remove('hidden');
@@ -131,6 +146,17 @@ function hideModal() {
   modal.classList.add('hidden');
 }
 
+//Update item stock in localStorage and the UI
+function updateStorage(e) {
+  const targetBook = e.target.parentElement.parentElement.children[1].innerText;
+  const currentStock = e.target.parentElement.parentElement.children[2].innerText;
+  localStorage.setItem(targetBook, currentStock - 1)
+  e.target.parentElement.parentElement.children[2].innerText = localStorage.getItem(targetBook);
+  if(localStorage.getItem(targetBook) === "0") {
+    e.target.parentElement.firstChild.disabled = "true"
+  }  
+}
+
 //Show Inventory Table (modal)
 function showBookInventory() {
   modal.innerHTML = '';
@@ -142,6 +168,7 @@ function showBookInventory() {
   <th>Item #</th>
   <th>Book Title</th>
   <th>Qty in Stock</th>
+  <th>Update Stock</th>
   <th>Price</th>
   </tr>
   </thead>
@@ -153,11 +180,12 @@ function showBookInventory() {
     <tr>
     <td>${index + 1}</td>
     <td>${book.title}</td>
-    <td class="qty-cell">${
-      book.quantity
-    }<button class="btn-subtract-qty">subtract</button></td>
+    <td>${
+      localStorage.getItem(`${book.title}`)
+    }</td>
+    <td><button class="btn-subtract-qty">subtract</button></td>
     <td>$${book.price}</td>
-    <tr
+    <tr>
     `;
   });
 
@@ -167,4 +195,6 @@ function showBookInventory() {
     `;
 
   modal.insertAdjacentHTML('afterbegin', html);
+
+
 }
