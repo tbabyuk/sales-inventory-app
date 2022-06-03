@@ -28,6 +28,7 @@ const btnShowOther = document.querySelector('#btn-inventory-other');
 //Other Elements
 const modalOverlay = document.querySelector('#modal-overlay');
 const booksRemaining = document.querySelector("#qty-cell");
+// const tableRow = document.querySelector(".table-row");
 
 //===================================================================================//
 
@@ -111,7 +112,7 @@ function showItemInfo() {
   showTax.innerHTML = `${bookSelected.tax * 100}%`;
   const totalCost = bookSelected.price * bookSelected.tax + bookSelected.price;
   showTotal2.innerHTML = `$${totalCost.toFixed(2)}`;
-  showInventory.innerHTML = `${bookSelected.quantity}`;
+  showInventory.innerText = localStorage.getItem(bookSelected.title);
 }
 
 //Clear item info fields
@@ -152,13 +153,20 @@ function updateStorage(e) {
   const currentStock = e.target.parentElement.parentElement.children[2].innerText;
   localStorage.setItem(targetBook, currentStock - 1)
   e.target.parentElement.parentElement.children[2].innerText = localStorage.getItem(targetBook);
+  if(localStorage.getItem(targetBook) <= "1") {
+    e.target.parentElement.parentElement.className="row-red"
+  } else {
+    e.target.parentElement.parentElement.className="row-green"
+  }
+  
   if(localStorage.getItem(targetBook) === "0") {
     e.target.parentElement.firstChild.disabled = "true"
-  }  
+  }
 }
 
 //Show Inventory Table (modal)
 function showBookInventory() {
+
   modal.innerHTML = '';
 
   let html = `
@@ -167,7 +175,7 @@ function showBookInventory() {
   <tr>
   <th>Item #</th>
   <th>Book Title</th>
-  <th>Qty in Stock</th>
+  <th>Quantity in Stock</th>
   <th>Update Stock</th>
   <th>Price</th>
   </tr>
@@ -175,17 +183,23 @@ function showBookInventory() {
   <tbody>
   `;
 
+const name = "Terry"
+
   booksArray.forEach((book, index) => {
+
+
+    let zeroExists = localStorage.getItem(book.title) === "0";
+
     html += `
-    <tr>
+    <tr class="${zeroExists ? "row-red" : "row-green"}">
     <td>${index + 1}</td>
-    <td>${book.title}</td>
+    <td >${book.title}</td>
     <td>${
-      localStorage.getItem(`${book.title}`)
+      localStorage.getItem(book.title)
     }</td>
-    <td><button class="btn-subtract-qty">subtract</button></td>
+    <td><button class="btn-subtract-qty" ${zeroExists && "disabled"}>subtract</button></td>
     <td>$${book.price}</td>
-    <tr>
+    </tr>
     `;
   });
 
@@ -195,6 +209,5 @@ function showBookInventory() {
     `;
 
   modal.insertAdjacentHTML('afterbegin', html);
-
 
 }

@@ -213,6 +213,7 @@ body {
   font-size: 0.9rem;
   width: 100%;
   color: var(--main-white);
+  /* border-collapse: separate; */
 }
 
 #inventory-table thead {
@@ -229,8 +230,8 @@ td {
   padding: 5px;
 }
 
-#inventory-table tr:nth-child(even) {
-  background-color: rgba(102, 102, 102, 0.2);
+#inventory-table td:nth-child(3) {
+  text-align: center;
 }
 
 #modal-overlay {
@@ -263,7 +264,6 @@ td {
   cursor: pointer;
 }
 
-
 .btn-subtract-qty:hover {
   cursor: pointer;
 }
@@ -272,10 +272,9 @@ td {
   background-color: #f2d1d1;
 }
 
-.red {
-  background-color: red;
+.row-green {
+  background-color: #b4f5b8;
 }
-
 
 .qty-cell {
   display: flex;
