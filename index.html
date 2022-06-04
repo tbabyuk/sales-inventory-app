@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script type="module" defer src="inventory.js"></script>
     <script type="module" defer src="script.js"></script>
     <title>DCAM Sales & Inventory</title>
 </head>
@@ -21,7 +20,7 @@
         <div id="middle-section">
             <div id="middle-top">
                 <div class="boxes" id="calculate-label">Calculate Total Price:</div>
-                <div class="boxes"><input type="text" id="input-subtotal"></input></div>
+                <div class="boxes"><input type="text" id="input-subtotal" placeholder="enter subtotal"></input></div>
                 <div class="boxes">
                     <select id="select-tax">
                         <option value="1.05">GST (5%)</option>
@@ -29,7 +28,7 @@
                     </select>
                 </div>
                 <div class="boxes display-box" id="show-total-1"></div>
-                <div class="boxes"><button id="btn-calc-total" class="buttons">Calculate Total</button></div>
+                <div class="boxes"><button id="btn-calc-total" class="button button-action">Calculate Total</button></div>
             </div>
 
             <div id="middle-bottom">
@@ -41,7 +40,7 @@
                 <div class="boxes display-box" id="show-tax"></div>
                 <div class="boxes display-box" id="show-total-2"></div>
                 <div class="boxes display-box" id="show-remaining-inventory"></div>
-                <div class="boxes"><button id="btn-show-total" class="buttons">Show Info</button></div>
+                <div class="boxes"><button id="btn-show-total" class="button button-action">Show Info</button></div>
             </div>
             <div id="middle-bottom-bottom">
                 <div class="boxes"></div>
@@ -54,9 +53,11 @@
         </div>
         <div id="bottom-section">
             <div class="boxes" id="inventory-label">Current Inventory:</div>
-            <div class="boxes"><button class="buttons" id="btn-inventory-books">BOOKS</button></div>
-            <div class="boxes"><button class="buttons" id="btn-inventory-notebooks">NOTEBOOKS</button></div>
-            <div class="boxes"><button class="buttons" id="btn-inventory-other">OTHER</button></div>
+            <div class="boxes"><button class="button button-inventory" id="btn-inventory-books">BOOKS</button></div>
+            <div class="boxes"><button class="button button-inventory" id="btn-inventory-notebooks">NOTEBOOKS</button></div>
+            <div class="boxes"><button class="button button-inventory" id="btn-inventory-other">OTHER</button></div>
+            <div class="boxes"><button class="button button-action" id="btn-sales-log">Sales Log</button></div>
+            <div class="boxes"><button class="button" id="btn-sales-reset-log">Reset Log</button></div>
         </div>
 
         <div id="modal-overlay" class="hidden">

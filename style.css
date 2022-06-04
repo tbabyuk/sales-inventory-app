@@ -117,7 +117,7 @@ body {
   margin-left: 20px;
   margin-right: 20px;
   background-color: var(--main-gray);
-  /* border-radius: 10px; */
+  border-radius: 10px;
 }
 
 
@@ -126,26 +126,38 @@ body {
   border-radius: 10px;
 }
 
-#bottom-section .buttons {
+
+.button-action {
+    background-color: var(--dcam-blue);
+}
+
+.button-action:hover {
+  background-color: rgba(33, 109, 171, 0.8);
+}
+
+.button-inventory {
   background-color: var(--dcam-green);
 }
 
-#bottom-section .buttons:hover {
+.button-inventory:hover {
   background-color: rgba(74, 173, 82, 0.8);
   cursor: pointer;
 }
 
+
+#btn-sales-reset-log {
+ background-color: rgb(165, 42, 42);
+}
+
+#btn-sales-reset-log:hover {
+  background-color: rgb(165, 42, 42, 0.8);
+}
+
+
+
 #middle-top .boxes:last-child,
 #middle-bottom .boxes:last-child {
   border-radius: 10px;
-}
-
-.buttons {
-  width: 200px;
-  height: 65px;
-  background-color: var(--main-gray);
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px var(--medium-gray);
 }
 
 #calculate-label, #inventory-label {
@@ -160,6 +172,8 @@ body {
   width: 100%;
   font-size: 1.2rem;
   text-align: center;
+  border-radius: 10px;
+  border: 1px solid gray;
 }
 
 #select-item {
@@ -172,19 +186,19 @@ body {
   cursor: pointer;
 }
 
-.buttons {
+.button {
   height: 100%;
   width: 100%;
   font-size: 1.2rem;
   text-align: center;
-  background-color: var(--dcam-blue);
   border: none;
   border-radius: 10px;
   color: var(--main-white);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px var(--medium-gray);
 }
 
-.buttons:hover {
-  background-color: rgba(33, 109, 171, 0.8);
+.button:hover {
   cursor: pointer;
 }
 
@@ -194,6 +208,7 @@ body {
   font-size: 1.2rem;
   text-align: center;
   background-color: var(--main-gray);
+  border-radius: 10px;
 }
 
 #modal {
@@ -269,7 +284,11 @@ td {
 }
 
 .row-red {
-  background-color: #f2d1d1;
+  background-color: #f7bdbd;
+}
+
+.row-yellow {
+  background-color: #eae995;
 }
 
 .row-green {
