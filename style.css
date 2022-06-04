@@ -30,6 +30,8 @@ body {
   position: relative;
 }
 
+
+/* TOP SECTION || */
 #top-section {
   height: 70px;
   width: 100%;
@@ -47,11 +49,21 @@ body {
 #logo {
   height: 50px;
   width: 190px;
-  background-image: url("./dcam-logo.png");
+  background-image: url('./dcam-logo.png');
   background-size: cover;
   background-position: center;
 }
 
+
+/* MIDDLE SECTION ||*/
+#middle-top .boxes {
+  width: 150px;
+}
+
+#middle-top .boxes:first-child,
+#middle-top .boxes:last-child {
+  width: 200px;
+}
 
 #middle-section {
   height: 300px;
@@ -63,6 +75,42 @@ body {
   border-radius: 10px;
 }
 
+#middle-bottom .boxes {
+  height: 30px;
+  background-color: var(--main-white);
+  text-align: center;
+}
+
+#middle-bottom {
+  margin-top: 0;
+}
+
+#middle-top,
+#middle-middle,
+#middle-bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+#middle-top .boxes:last-child,
+#middle-middle .boxes:last-child {
+  border-radius: 10px;
+}
+
+#middle-middle .boxes,
+#middle-bottom .boxes {
+  width: 100px;
+}
+
+#middle-middle .boxes:first-child,
+#middle-middle .boxes:last-child,
+#middle-bottom .boxes:first-child,
+#middle-bottom .boxes:last-child {
+  width: 200px;
+}
+
+
+/* BOTTOM SECTION || */
 #bottom-section {
   height: 100px;
   width: 100%;
@@ -74,116 +122,19 @@ body {
   border-radius: 10px;
 }
 
-#middle-top,
-#middle-bottom,
-#middle-bottom-bottom {
-  display: flex;
-  justify-content: space-between;
-}
-
-
-#middle-bottom-bottom .boxes {
-  height: 30px;
-  background-color: var(--main-white);
-  text-align: center;
-}
-
-#middle-bottom-bottom {
-  margin-top: 0;
-}
-
-#middle-top .boxes {
-  width: 150px;
-}
-
-#middle-top .boxes:first-child, #middle-top .boxes:last-child {
-  width: 200px;
-}
-
-#middle-bottom .boxes, 
-#middle-bottom-bottom .boxes {
-  width: 100px;
-}
-
-#middle-bottom .boxes:first-child, #middle-bottom .boxes:last-child,
-#middle-bottom-bottom .boxes:first-child, #middle-bottom-bottom .boxes:last-child {
-  width: 200px;
-}
-
-
-.boxes {
-  width: 100px;
-  height: 65px;
-  margin-left: 20px;
-  margin-right: 20px;
-  background-color: var(--main-gray);
-  border-radius: 10px;
-}
-
-
 #bottom-section .boxes {
   width: 200px;
   border-radius: 10px;
 }
 
 
-.button-action {
-    background-color: var(--dcam-blue);
-}
-
-.button-action:hover {
-  background-color: rgba(33, 109, 171, 0.8);
-}
-
-.button-inventory {
-  background-color: var(--dcam-green);
-}
-
-.button-inventory:hover {
-  background-color: rgba(74, 173, 82, 0.8);
-  cursor: pointer;
-}
-
-
+/* BUTTONS || */
 #btn-sales-reset-log {
- background-color: rgb(165, 42, 42);
+  background-color: rgb(165, 42, 42);
 }
 
 #btn-sales-reset-log:hover {
   background-color: rgb(165, 42, 42, 0.8);
-}
-
-
-
-#middle-top .boxes:last-child,
-#middle-bottom .boxes:last-child {
-  border-radius: 10px;
-}
-
-#calculate-label, #inventory-label {
-  background-color: var(--main-white);
-  display: grid;
-  place-items: center;
-  font-size: 1.3rem;
-}
-
-#input-subtotal, #select-tax {
-  height: 100%;
-  width: 100%;
-  font-size: 1.2rem;
-  text-align: center;
-  border-radius: 10px;
-  border: 1px solid gray;
-}
-
-#select-item {
-  height: 100%;
-  width: 100%;
-  padding: 0 8px;
-}
-
-#select-item:hover {
-  cursor: pointer;
 }
 
 .button {
@@ -202,33 +153,33 @@ body {
   cursor: pointer;
 }
 
-.display-box {
-  display: grid;
-  place-items: center;
-  font-size: 1.2rem;
-  text-align: center;
-  background-color: var(--main-gray);
-  border-radius: 10px;
+.btn-subtract-qty:hover {
+  cursor: pointer;
 }
 
-#modal {
-  position: absolute;
-  top: 40px;
-  left: 90px;
-  z-index: 1;
-  height: 500px;
-  width: 85%;
-  background-color: var(--main-white);
-  overflow-y: scroll;
+.button-action {
+  background-color: var(--dcam-blue);
 }
 
-/* INVENTORY TABLE STYLING */
+.button-action:hover {
+  background-color: rgba(33, 109, 171, 0.8);
+}
 
+.button-inventory {
+  background-color: var(--dcam-green);
+}
+
+.button-inventory:hover {
+  background-color: rgba(74, 173, 82, 0.8);
+  cursor: pointer;
+}
+
+
+/* MODAL & TABLE STYLING || */
 #inventory-table {
   font-size: 0.9rem;
   width: 100%;
   color: var(--main-white);
-  /* border-collapse: separate; */
 }
 
 #inventory-table thead {
@@ -247,6 +198,17 @@ td {
 
 #inventory-table td:nth-child(3) {
   text-align: center;
+}
+
+#modal {
+  position: absolute;
+  top: 40px;
+  left: 90px;
+  z-index: 1;
+  height: 500px;
+  width: 85%;
+  background-color: var(--main-white);
+  overflow-y: scroll;
 }
 
 #modal-overlay {
@@ -271,18 +233,6 @@ td {
   font-size: 3rem;
 }
 
-.hidden {
-  display: none;
-}
-
-.subtract-inventory {
-  cursor: pointer;
-}
-
-.btn-subtract-qty:hover {
-  cursor: pointer;
-}
-
 .row-red {
   background-color: #f7bdbd;
 }
@@ -295,7 +245,54 @@ td {
   background-color: #b4f5b8;
 }
 
-.qty-cell {
-  display: flex;
-  justify-content: space-evenly;
+.hidden {
+  display: none;
+}
+
+
+/* OTHER ELEMENTS || */
+.boxes {
+  width: 100px;
+  height: 65px;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: var(--main-gray);
+  border-radius: 10px;
+}
+
+#calculate-label,
+#inventory-label {
+  background-color: var(--main-white);
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+}
+
+#input-subtotal,
+#select-tax {
+  height: 100%;
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+#select-item {
+  height: 100%;
+  width: 100%;
+  padding: 0 8px;
+}
+
+#select-item:hover {
+  cursor: pointer;
+}
+
+.display-box {
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  text-align: center;
+  background-color: var(--main-gray);
+  border-radius: 10px;
 }

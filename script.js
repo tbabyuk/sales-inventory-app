@@ -86,7 +86,6 @@ function resetSalesLog() {
   itemsSoldKeysArray.forEach(item => {
     localStorage.removeItem(item)
   })
-  console.log("Sales Log has been reset!")
 }
 
 
@@ -119,7 +118,6 @@ function showItemInfo() {
   let item = selectItem.value;
 
   const bookSelected = booksArray.find((book) => book.title === item);
-  // console.log(bookSelected);
 
   showSubtotal.innerHTML = `$${bookSelected.price}`;
   showTax.innerHTML = `${bookSelected.tax * 100}%`;
@@ -190,9 +188,6 @@ let dateFormatted2 = date2.toLocaleString('en-US', {
   second: 'numeric'
 });
 
-// console.log(dateFormatted2)
-
-
 
 //Update item stock in localStorage and the UI
 function updateStorage(e) {
@@ -218,7 +213,6 @@ function updateStorage(e) {
 
 function recordSale(item) {
   let unique = Math.floor(Math.random() * 200);
-  console.log(unique)
   localStorage.setItem(`${item}_${unique}`, dateFormatted)
 }
 
@@ -326,8 +320,6 @@ function showNotebookInventory() {
 function showSalesRecord() {
 
   const itemsSoldKeysArray = Object.keys(localStorage).filter(key => key.includes("_"))
-  console.log(itemsSoldKeysArray)
-
 
   modal.innerHTML = '';
 
@@ -336,8 +328,8 @@ function showSalesRecord() {
   <thead>
   <tr>
   <th>Item #</th>
-  <th>Date Sold</th>
   <th>Item Sold</th>
+  <th>Date Sold</th>
   </tr>
   </thead>
   <tbody>
